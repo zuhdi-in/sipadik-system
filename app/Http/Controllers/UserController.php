@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -73,13 +74,21 @@ class UserController extends Controller
     {   
         //proses input pegawai
         $request->validate([
-            'kode_Profile' => 'required|max:10',
-            'nama_Profile' => 'required|max:45'
+            'name' => 'required|max:10',
+            'email' => 'required|max:45',
+            'password' => 'required'
         ]);
-        //lakukan update data dari request form edit
-        User::find($id)->update($request->all());
 
-        return redirect()->route('user.index')
+        $data_user = [
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => Hash::make($request->password)
+        ];
+
+        //lakukan update data dari request form edit
+        User::find($id)->update($data_user);
+
+        return redirect()->route('dashboard')
             ->with('success', 'Data User Berhasil Diubah');
     }
 
@@ -91,11 +100,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //sebelum hapus data, hapus terlebih dahulu fisik file fotonya jika ada
-        $row = User::find($id);
-        //setelah itu baru hapus data User
-        User::where('id', $id)->delete();
-        return redirect()->route('user.index')
-            ->with('success', 'Data User Berhasil Dihapus');
+        //
     }
 }
