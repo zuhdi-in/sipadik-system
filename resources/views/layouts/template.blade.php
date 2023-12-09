@@ -30,6 +30,7 @@
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
+        @if(auth()->check())
         @include('layouts.header')
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -38,6 +39,14 @@
         @endif
         @yield('content')
         @include('layouts.footer')
+        @else
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
+        @yield('content')
+        @endif
 
     </div>
     <!-- End of Page Wrapper -->
