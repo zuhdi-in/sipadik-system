@@ -1,0 +1,129 @@
+* {
+    font-family: 'Manrope', sans-serif;
+}
+
+.merk {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #1DC88A;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+.sort-icon {
+    display: none;
+    /* Sembunyikan ikon secara default */
+    margin-left: 5px;
+}
+
+input {
+    border-radius: 100px !important;
+
+}
+
+th.sorted-asc .asc,
+th.sorted-desc .desc {
+    display: inline;
+    /* Tampilkan ikon sesuai dengan arah sorting */
+}
+
+.circle-icon {
+    width: 50px !important;
+    height: 50px !important;
+    background-color: #1DC88A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.circle-icon i {
+    color: #ffffff;
+}
+
+.custom-table th {
+    background-color: #1DC88A;
+    color: white;
+    font-weight: 500;
+
+}
+
+th,
+td {
+    vertical-align: middle !important;
+}
+
+.pte {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 30px;
+
+}
+
+td {
+    width: 13%;
+}
+
+table {
+    text-align: center;
+}
+
+.line_vertikal {
+    border: 1px solid rgb(209, 209, 209);
+    height: auto;
+    width: 0;
+    margin: 7px 0;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.btn_print {
+    border-radius: 100px;
+    padding: 12px 0px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    width: 170px;
+}
+
+.btn_add {
+    border-radius: 100px;
+    padding: 12px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+}
+
+.title_page {
+    margin: auto 0;
+    margin-left: 15px;
+    color: #121212;
+    font-weight: 700;
+}
+
+.form-control {
+    height: auto !important;
+}
+@media only screen and (max-width: 768px) {
+    .line_vertikal {
+        display: none;
+    }
+
+    .title_page {
+        font-size: 24px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 21ch;
+    }
+
+    .btn_print {
+        width: 166px;
+    }
+}
