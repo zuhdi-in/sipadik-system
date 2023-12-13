@@ -9,16 +9,16 @@
                 </div>
                 <h3 class="title_page">Buku Agenda - Surat Masuk</h3>
             </div>
-            <div class="d-flex flex-wrap justify-content-between gap-10 mt-4 mt-lg-0 ">                
+            <div class="d-flex flex-wrap justify-content-between gap-10 mt-4 mt-lg-0 ">
                 <a class="btn btn-danger btn_print" href="{{ url('dashboard/surat-masuk/export-pdf') }}">
-                    <i class="fa-regular fa-file-pdf fa-lg"></i> &nbsp Cetak Laporan 
+                    <i class="fa-regular fa-file-pdf fa-lg"></i> &nbsp Cetak Laporan
                 </a>
-                
+
                 <a class="btn btn-success btn_print" href="{{ url('dashboard/surat-masuk/export-excel') }}">
                     <i class="fa-solid fa-file-csv fa-lg"></i> &nbsp Cetak Laporan
                 </a>
             </div>
-            
+
         </div>
         <form id="filter-form">
             <div class="row justify-content-between mb-4">
@@ -65,14 +65,8 @@
                         <th class="text-center">Pengirim</th>
                         <th class="text-center">Berkas</th>
                         <th class="text-center">Disposisi</th>
-                        @if(auth()->check() && auth()->user()->type == 'admin')
                         <th class="text-center">Keterangan</th>
                         <th style="border-top-right-radius: 20px" class="text-center"></th>
-                        @endif
-                        
-                        @if(auth()->check() && auth()->user()->type == 'staff')
-                        <th style="border-top-right-radius: 20px" class="text-center">Keterangan</th>
-                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -107,14 +101,13 @@
                             <td class="pte">{{ $row->disposisi ?? '-' }}</td>
                             <td class="pte">
                                 {{ $row->keterangan ?? '-' }}</td>
-                            @if(auth()->check() && auth()->user()->type == 'admin')
                             <td class="text-center">
 
                                 <a class="btn btn-sm dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class='fas fa-fw fa-gear fa-lg'></i>
                                 </a>
-                                
+
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
                                     <form method="POST" action="{{ route('surat-masuk.destroy', $row->id) }}">
@@ -136,7 +129,6 @@
                                 </div>
 
                             </td>
-                            @endif
                         </tr>
                     @endforeach
                 </tbody>

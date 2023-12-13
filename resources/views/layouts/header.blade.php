@@ -25,7 +25,6 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-    @if(auth()->check() && auth()->user()->type == 'admin')
     <!-- Heading -->
     <div class="sidebar-heading">
         Form Add Surat
@@ -47,7 +46,7 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-    @endif
+
     <!-- Heading -->
     <div class="sidebar-heading">
         Buku Agenda

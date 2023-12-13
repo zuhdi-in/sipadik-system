@@ -61,15 +61,9 @@
                         <th class="text-center">Perihal</th>
                         <th class="text-center">Penerima</th>
                         <th class="text-center">Berkas</th>
-                        @if(auth()->check() && auth()->user()->type == 'admin')
                         <th class="text-center">Keterangan</th>
                         <th style="border-top-right-radius: 20px" class="text-center"></th>
-                        @endif
-                        
-                        @if(auth()->check() && auth()->user()->type == 'staff')
-                        <th style="border-top-right-radius: 20px" class="text-center">Keterangan</th>
-                        @endif
-                        
+                
                     </tr>
                 </thead>
                 <tbody>
@@ -98,7 +92,6 @@
                             </td>
                             <td class="pte">
                                 {{ $row->keterangan ?? '-' }}</td>
-                                @if(auth()->check() && auth()->user()->type == 'admin')
                             <td class="text-center">
 
                                 <a class="btn btn-sm dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -126,8 +119,7 @@
                                     </form>
                                 </div>
 
-                            </td>
-                            @endif
+                            </td>   
                         </tr>
                     @endforeach
                 </tbody>
