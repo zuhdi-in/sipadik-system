@@ -40,7 +40,7 @@
                         <div class="col mt-2 mt-lg-0">
                             <!-- ... Existing filter elements ... -->
 
-                            <button style="background-color: white; border: 0px; color:red; width:50%;"
+                            <button style="background-color: white; border: 0px; color:red;"
                                 id="clear_filter_button" class="btn form-control btn-danger">Bersihkan</button>
                         </div>
                     </div>
