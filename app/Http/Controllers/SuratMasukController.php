@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisSurat;
 use App\Models\SuratMasuk;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -17,7 +18,10 @@ class SuratMasukController extends Controller
      */
     public function index()
     {
-        $data = SuratMasuk::all();
+        $data = DB::table('surat_masuk')
+                    ->join('jenis_surat', 'surat_masuk.jenis_surat_id', '=', 'jenis_surat.id')
+                    ->select('surat_masuk.*', 'jenis_surat.nama_jenis')
+                    ->get();
         return view('dashboard.surat-masuk.index', compact('data'));
     }
 
@@ -28,7 +32,8 @@ class SuratMasukController extends Controller
      */
     public function create()
     {
-        return view('dashboard.surat-masuk.add-surat-masuk');
+        $jenis = JenisSurat::all();
+        return view('dashboard.surat-masuk.add-surat-masuk', compact('jenis'));
     }
 
     /**
@@ -48,6 +53,7 @@ class SuratMasukController extends Controller
             'disposisi' => 'string',
             'berkas' => 'file|max:2048', // Max file size is 2MB (2048 KB)
             'keterangan' => 'string',
+            'jenis_surat_id' => 'string',
         ]);
 
         if ($request->hasFile('berkas') && $request->file('berkas')->isValid()) {
@@ -87,7 +93,8 @@ class SuratMasukController extends Controller
     public function edit($id)
     {
         $data = SuratMasuk::find($id);
-        return view('dashboard.surat-masuk.edit-surat-masuk', compact('data'));
+        $jenis = JenisSurat::all();
+        return view('dashboard.surat-masuk.edit-surat-masuk', compact('data','jenis'));
     }
 
     /**
@@ -109,6 +116,7 @@ class SuratMasukController extends Controller
             'disposisi' => 'required|string',
             'berkas' => 'file|max:2048', // Max file size is 2MB (2048 KB)
             'keterangan' => 'required|string',
+            'jenis_surat_id' => 'string',
         ]);
 
         $suratMasuk = SuratMasuk::find($id);
@@ -148,8 +156,11 @@ class SuratMasukController extends Controller
 
     public function exportPDF()
     {
-        $data = SuratMasuk::all();
-        $pdf = PDF::loadView('dashboard.surat-masuk.exportPDF', ['data' => $data]);
+        $data = DB::table('surat_masuk')
+                    ->join('jenis_surat', 'surat_masuk.jenis_surat_id', '=', 'jenis_surat.id')
+                    ->select('surat_masuk.*', 'jenis_surat.nama_jenis')
+                    ->get();
+        $pdf = PDF::loadView('dashboard.surat-masuk.exportPDF', ['data' => $data])->setPaper('a4', 'landscape');;
         $dateTime = now()->format('Y-m-d_H-i-s'); // Current date and time formatted
         $pdfFileName = 'suratMasuk_' . $dateTime . '.pdf'; // Constructing the PDF file name
 
@@ -159,7 +170,10 @@ class SuratMasukController extends Controller
 
     public function exportExcel()
     {
-        $users = DB::table('surat_masuk')->get();
+        $users = DB::table('surat_masuk')
+        ->join('jenis_surat', 'surat_masuk.jenis_surat_id', '=', 'jenis_surat.id')
+        ->select('surat_masuk.nomor_surat','surat_masuk.perihal','surat_masuk.tanggal_surat','surat_masuk.pengirim','surat_masuk.tanggal_diterima','surat_masuk.disposisi','surat_masuk.berkas','surat_masuk.keterangan', 'jenis_surat.nama_jenis')
+        ->get();
 
         if ($users->isEmpty()) {
             return redirect()->route('surat-masuk.index')

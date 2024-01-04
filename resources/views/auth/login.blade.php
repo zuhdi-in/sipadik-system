@@ -56,7 +56,6 @@
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
-                                <p class="mt-3 mb-0">Need an account?<a href="{{ route('register') }}" style="text-decoration: underline">{{ __('Register') }}</a></p>
                             </div>
                         </div>
                     </form>

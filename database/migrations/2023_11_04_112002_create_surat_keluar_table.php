@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('surat_keluar', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_surat')->nullable();
+            $table->string('nomor_surat')->unique();
             $table->string('perihal')->nullable();
             $table->date('tanggal_keluar')->nullable();
             $table->string('penerima')->nullable();

@@ -53,7 +53,7 @@ class User extends Authenticatable
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["admin", "staff"][$value],
+            get: fn ($value) =>  ["admin", "staff", "kepala-sekolah"][$value],
         );
     }
 

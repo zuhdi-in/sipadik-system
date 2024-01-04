@@ -20,17 +20,17 @@
         </h5>
     </center>
 
-    <table class='table table-bordered'>
+    <table class='table table-bordered' style="table-layout: fixed; ">
         <thead>
             <tr>
-                <th style="border-top-left-radius: 20px;" >Tanggal Surat
-                </th>
+                <th style="border-top-left-radius: 20px;"">Tanggal Surat</th>
                 <th class="text-center">Tanggal Diterima</th>
                 <th class="text-center">No Surat</th>
                 <th class="text-center">Perihal</th>
                 <th class="text-center">Pengirim</th>
                 <th class="text-center">Disposisi</th>
-                <th style="border-top-right-radius: 20px;">Keterangan</th>
+                <th class="text-center">Keterangan</th>
+                <th style="border-top-right-radius: 20px;">Jenis Surat</th>
             </tr>
         </thead>
         <tbody>
@@ -42,8 +42,8 @@
                     <td>{{ $row->perihal }}</td>
                     <td>{{ $row->pengirim }}</td>
                     <td>{{ $row->disposisi }}</td>
-                    <td>
-                        {{ $row->keterangan}}</td>
+                    <td>{{ $row->keterangan}}</td>
+                    <td>{{ $row->{'nama_jenis'} }}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisSurat;
 use App\Models\SuratKeluar;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -18,7 +19,10 @@ class SuratKeluarController extends Controller
      */
     public function index()
     {
-        $data = SuratKeluar::all();
+        $data = DB::table('surat_keluar')
+                    ->join('jenis_surat', 'surat_keluar.jenis_surat_id', '=', 'jenis_surat.id')
+                    ->select('surat_keluar.*', 'jenis_surat.nama_jenis')
+                    ->get();
         return view('dashboard.surat-keluar.index', compact('data'));
     }
 
@@ -29,7 +33,8 @@ class SuratKeluarController extends Controller
      */
     public function create()
     {
-        return view('dashboard.surat-keluar.add-surat-keluar');
+        $jenis = JenisSurat::all();
+        return view('dashboard.surat-keluar.add-surat-keluar', compact('jenis'));
     }
 
     /**
@@ -47,6 +52,7 @@ class SuratKeluarController extends Controller
             'penerima' => 'required|string',
             'berkas' => 'file|max:2048', // Max file size is 2MB (2048 KB)
             'keterangan' => 'string',
+            'jenis_surat_id' => 'string',
         ]);
 
         if ($request->hasFile('berkas') && $request->file('berkas')->isValid()) {
@@ -86,7 +92,8 @@ class SuratKeluarController extends Controller
     public function edit($id)
     {
         $data = SuratKeluar::find($id);
-        return view('dashboard.surat-keluar.edit-surat-keluar', compact('data'));
+        $jenis = JenisSurat::all();
+        return view('dashboard.surat-keluar.edit-surat-keluar', compact('data','jenis'));
     }
 
     /**
@@ -106,6 +113,7 @@ class SuratKeluarController extends Controller
             'penerima' => 'required|string',
             'berkas' => 'file|max:2048', // Max file size is 2MB (2048 KB)
             'keterangan' => 'string',
+            'jenis_surat_id' => '',
         ]);
 
         $suratKeluar = SuratKeluar::find($id);
@@ -145,8 +153,11 @@ class SuratKeluarController extends Controller
 
     public function exportPDF()
     {
-        $data = SuratKeluar::all();
-        $pdf = PDF::loadView('dashboard.surat-keluar.exportPDF', ['data' => $data]);
+        $data = DB::table('surat_keluar')
+        ->join('jenis_surat', 'surat_keluar.jenis_surat_id', '=', 'jenis_surat.id')
+        ->select('surat_keluar.nomor_surat','surat_keluar.perihal','surat_keluar.tanggal_keluar','surat_keluar.penerima','surat_keluar.keterangan', 'jenis_surat.nama_jenis')
+        ->get();
+        $pdf = PDF::loadView('dashboard.surat-keluar.exportPDF', ['data' => $data])->setPaper('a4', 'landscape');
         $dateTime = now()->format('Y-m-d_H-i-s'); // Current date and time formatted
         $pdfFileName = 'suratKeluar_' . $dateTime . '.pdf'; // Constructing the PDF file name
 
@@ -156,7 +167,10 @@ class SuratKeluarController extends Controller
 
     public function exportExcel()
     {
-        $data = DB::table('surat_keluar')->get();
+        $data = DB::table('surat_keluar')
+        ->join('jenis_surat', 'surat_keluar.jenis_surat_id', '=', 'jenis_surat.id')
+        ->select('surat_keluar.nomor_surat','surat_keluar.perihal','surat_keluar.tanggal_keluar','surat_keluar.penerima','surat_keluar.keterangan', 'jenis_surat.nama_jenis')
+        ->get();
 
         if ($data->isEmpty()) {            
             return redirect()->route('surat-keluar.index')

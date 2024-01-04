@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('surat_masuk', function (Blueprint $table) {
             $table->id();            
-            $table->string('nomor_surat')->nullable();
+            $table->string('nomor_surat')->unique();
             $table->string('perihal')->nullable();
             $table->date('tanggal_surat')->nullable();
             $table->string('pengirim')->nullable();
@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('keterangan')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
+            
 
         });
     }

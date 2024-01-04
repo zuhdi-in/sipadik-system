@@ -22,7 +22,7 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-
+    @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')
     <!-- Divider -->
     <hr class="sidebar-divider">
     <!-- Heading -->
@@ -43,6 +43,7 @@
             <i class="fas fa-fw fa-plus"></i>
             <span>Form Surat Keluar</span></a>
     </li>
+    @endif
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -69,11 +70,22 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
     @if(auth()->check() && auth()->user()->type == 'admin')
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Data Lainnya
+    </div>
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="{{ url('dashboard/user') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>User</span></a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('dashboard/jenis-surat') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Jenis Surat</span></a>
     </li>
     @endif
 

@@ -20,14 +20,15 @@
         </h5>
     </center>
 
-    <table class='table table-bordered' style="table-layout: fixed;" >
+    <table class='table table-bordered'>
         <thead>
             <tr>
-                <th style="border-top-left-radius: 20px;" >Tanggal Keluar
-                </th>
+                <th style="border-top-left-radius: 20px;" >Tanggal Surat</th>
+                <th class="text-center">Tanggal Diterima</th>
                 <th class="text-center">No Surat</th>
                 <th class="text-center">Perihal</th>
-                <th class="text-center">Penerima</th>
+                <th class="text-center">Pengirim</th>
+                <th class="text-center">Disposisi</th>
                 <th class="text-center">Keterangan</th>
                 <th style="border-top-right-radius: 20px;">Jenis Surat</th>
             </tr>
@@ -35,14 +36,14 @@
         <tbody>
             @foreach ($data as $row)
                 <tr>
-                    <td>{{ $row->{'tanggal_keluar'} }}</td>
+                    <td>{{ $row->{'tanggal_surat'} }}</td>
+                    <td>{{ $row->{'tanggal_diterima'} }}</td>
                     <td>{{ $row->{'nomor_surat'} }}</td>
                     <td>{{ $row->perihal }}</td>
-                    <td>{{ $row->penerima }}</td>
-                    <td>
-                        {{ $row->keterangan}}</td>
-                        <td>
-                            {{ $row->{'nama_jenis'} }}</td>
+                    <td>{{ $row->pengirim }}</td>
+                    <td>{{ $row->disposisi }}</td>
+                    <td>{{ $row->keterangan}}</td>
+                    <td>{{ $row->{'nama_jenis'} }}</td>
                 </tr>
             @endforeach
         </tbody>

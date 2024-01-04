@@ -12,7 +12,7 @@ class SuratKeluar extends Model
     protected $table = 'surat_keluar';
     
     protected $fillable = [
-        'nomor_surat','perihal','tanggal_keluar','penerima','berkas','keterangan'
+        'nomor_surat','perihal','tanggal_keluar','penerima','berkas','keterangan','jenis_surat_id'
     ];
     
     public function suratkeluar()

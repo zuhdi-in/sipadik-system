@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\JenisSurat;
+use App\Models\SuratKeluar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,8 +16,11 @@ class SuratKeluarFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    protected $model = SuratKeluar::class;
     public function definition()
     {
+        $jenisSuratId = JenisSurat::inRandomOrder()->first()->id;
         return [
             'nomor_surat' => $this->faker->unique()->regexify('SM/[A-Z]{3}/[0-9]{4}/[0-9]{2}'),
             'perihal' => $this->faker->sentence(5),
@@ -23,6 +28,7 @@ class SuratKeluarFactory extends Factory
             'penerima' => $this->faker->company,           
             'berkas' => $this->faker->word,
             'keterangan' => $this->faker->text,
+            'jenis_surat_id' => $jenisSuratId
         ];
     }
 }

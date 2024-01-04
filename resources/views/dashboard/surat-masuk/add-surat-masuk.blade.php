@@ -24,14 +24,23 @@
                 <form method="POST" action="{{ route('surat-masuk.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
-                        <div class="col-12 col-sm-6 mb-3 mb-lg-0">
+                        <div class="col-12 col-sm-4 mb-3 mb-lg-0">
                             <label class="form-label">Nomor Surat</label>
                             <input type="text" name="nomor_surat" class="form-control" />
                         </div>
 
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-4">
                             <label class="form-label">Perihal</label>
                             <input type="text" name="perihal" class="form-control" />
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <label class="form-label">Jenis Surat</label>
+                            <select class="form-select form-control" name="jenis_surat_id">
+                                <option selected>-- Pilih Jenis Surat --</option>                            
+                                @foreach($jenis as $jns)                            
+                                    <option value="{{ $jns->id }}">{{ $jns->{'nama_jenis'} }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-3">
