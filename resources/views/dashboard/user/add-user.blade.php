@@ -22,8 +22,7 @@
             @endif
             <div class="">
                 <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
-                    @csrf
-                    <input type="hidden" name="type" value="1" />
+                    @csrf        
                     <div class="row mb-3">
                         <div class="col-12 col-sm-6 mb-3 mb-lg-0">
                             <label class="form-label">Nama</label>
@@ -51,6 +50,15 @@
                                     }
                                 }
                             </script>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <label class="form-label">Role User</label>
+                            <select class="form-select form-control" name="type">
+                                <option selected>-- Pilih Jenis Surat --</option>                            
+                                <option value="1">Staff</option>                            
+                                <option value="2">Kepala Sekolah</option>                            
+                                
+                            </select>
                         </div>
                     </div>
 

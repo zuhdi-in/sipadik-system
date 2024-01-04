@@ -63,11 +63,12 @@
                         <th class="text-center">No Surat</th>
                         <th class="text-center">Perihal</th>
                         <th class="text-center">Pengirim</th>
+                        <th class="text-center">Jenis Surat</th>
                         <th class="text-center">Berkas</th>
                         <th class="text-center">Disposisi</th>
                         @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')
                         <th class="text-center">Keterangan</th>
-                        <th class="text-center">Jenis Surat</th>
+                        
                         <th style="border-top-right-radius: 20px" class="text-center"></th>
                         @endif
                         @if(auth()->check() && auth()->user()->type == 'kepala-sekolah')
@@ -83,6 +84,8 @@
                             <td>{{ $row->{'nomor_surat'} ?? '-' }}</td>
                             <td>{{ $row->perihal ?? '-' }}</td>
                             <td>{{ $row->pengirim ?? '-' }}</td>
+                            <td >
+                                {{ $row->{'nama_jenis'} ?? '-' }}</td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ url('dashboard/surat-masuk/unduh', $row->id) }}"
@@ -105,8 +108,7 @@
                                 {{ $row->keterangan ?? '-' }}</td>
 
                                 @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')
-                                <td class="pte">
-                                    {{ $row->{'nama_jenis'} ?? '-' }}</td>
+            
                             <td class="text-center">
 
                                 <a class="btn btn-sm dropdown-toggle" href="#" id="userDropdown" role="button"
