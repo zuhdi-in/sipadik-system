@@ -54,7 +54,7 @@
                         <div class="col-12 col-sm-6">
                             <label class="form-label">Role User</label>
                             <select class="form-select form-control" name="type">
-                                <option selected>-- Pilih Role User --</option>                            
+                                <option value="" selected>-- Pilih Role User --</option>                            
                                 <option value="1">Staff</option>                            
                                 <option value="2">Kepala Sekolah</option>                            
                                 
