@@ -90,8 +90,8 @@ class UserController extends Controller
     {
         //proses input pegawai
         $request->validate([
-            'name' => 'required|max:10',
-            'email' => 'required|max:45',
+            'name' => 'required|max:10|unique:users',
+            'email' => 'required|max:45|unique:users|email',
             'password' => 'required'
         ]);
 

@@ -46,13 +46,13 @@ class SuratKeluarController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_surat' => 'required|string',
+            'nomor_surat' => 'required|string|unique:surat_keluar',
             'perihal' => 'required|string',
             'tanggal_keluar' => 'required|date',
             'penerima' => 'required|string',
-            'berkas' => 'file|max:2048', // Max file size is 2MB (2048 KB)
-            'keterangan' => 'string',
-            'jenis_surat_id' => 'string',
+            'berkas' => 'required|file|max:2048', // Max file size is 2MB (2048 KB)
+            'keterangan' => 'required|string',
+            'jenis_surat_id' => 'required|string',
         ]);
 
         if ($request->hasFile('berkas') && $request->file('berkas')->isValid()) {

@@ -16,7 +16,7 @@
         }
     </style>
     <center>
-        <h5>Laporan Surat Masuk    
+        <h5>Laporan Surat Keluar
         </h5>
     </center>
 

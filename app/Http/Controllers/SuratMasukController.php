@@ -45,15 +45,15 @@ class SuratMasukController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_surat' => 'string',
-            'perihal' => 'string',
-            'tanggal_surat' => 'date',
-            'pengirim' => 'string',
-            'tanggal_diterima' => 'string',
-            'disposisi' => 'string',
-            'berkas' => 'file|max:2048', // Max file size is 2MB (2048 KB)
-            'keterangan' => 'string',
-            'jenis_surat_id' => 'string',
+            'nomor_surat' => 'required|string|unique:surat_masuk',
+            'perihal' => 'required|string',
+            'tanggal_surat' => 'required|date',
+            'pengirim' => 'required|string',
+            'tanggal_diterima' => 'required|string',
+            'disposisi' => 'required|string',
+            'berkas' => 'required|file|max:2048', // Max file size is 2MB (2048 KB)
+            'keterangan' => 'required|string',
+            'jenis_surat_id' => 'required|string',
         ]);
 
         if ($request->hasFile('berkas') && $request->file('berkas')->isValid()) {
@@ -69,6 +69,7 @@ class SuratMasukController extends Controller
             return redirect()->route('surat-masuk.index')
                 ->with('status', 'Data Surat Masuk Baru Berhasil Disimpan');
         }
+        
 
         return back()->with('status', 'File tidak diunggah atau tidak valid');
     }
@@ -160,7 +161,7 @@ class SuratMasukController extends Controller
                     ->join('jenis_surat', 'surat_masuk.jenis_surat_id', '=', 'jenis_surat.id')
                     ->select('surat_masuk.*', 'jenis_surat.nama_jenis')
                     ->get();
-        $pdf = PDF::loadView('dashboard.surat-masuk.exportPDF', ['data' => $data])->setPaper('a4', 'landscape');;
+        $pdf = PDF::loadView('dashboard.surat-masuk.exportPDF', ['data' => $data])->setPaper('a4', 'landscape');
         $dateTime = now()->format('Y-m-d_H-i-s'); // Current date and time formatted
         $pdfFileName = 'suratMasuk_' . $dateTime . '.pdf'; // Constructing the PDF file name
 

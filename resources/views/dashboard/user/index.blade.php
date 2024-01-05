@@ -7,7 +7,7 @@
                 <div class="circle-icon">
                     <i class="fa-solid fa-book fa-lg"></i>
                 </div>
-                <h3 class="title_page">Buku Agenda - Surat Masuk</h3>
+                <h3 class="title_page">Daftar User</h3>
             </div>
             <div class="d-flex flex-wrap justify-content-between gap-10 mt-4 mt-lg-0 ">
                 <a class="btn btn-success btn_print" href="{{ route('user.create') }}">
