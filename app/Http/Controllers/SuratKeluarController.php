@@ -22,6 +22,7 @@ class SuratKeluarController extends Controller
         $data = DB::table('surat_keluar')
                     ->join('jenis_surat', 'surat_keluar.jenis_surat_id', '=', 'jenis_surat.id')
                     ->select('surat_keluar.*', 'jenis_surat.nama_jenis')
+                    ->orderBy('surat_keluar.tanggal_keluar', 'ASC')
                     ->get();
         return view('dashboard.surat-keluar.index', compact('data'));
     }

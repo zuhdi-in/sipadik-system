@@ -13,6 +13,8 @@
         table tr td,
         table tr th {
             font-size: 9pt;
+            white-space: normal;
+            word-wrap: break-word;
         }
     </style>
     <center>

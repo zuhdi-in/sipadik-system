@@ -55,26 +55,27 @@
                 cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="border-top-left-radius: 20px;" class="text-center">Tanggal Keluar
-                        </th>                        
+                        <th style="border-top-left-radius: 20px;" class="text-center">No Agenda</th>       
+                        <th class="text-center">Tanggal Keluar</th>                        
                         <th class="text-center">No Surat</th>
                         <th class="text-center">Perihal</th>
                         <th class="text-center">Penerima</th>
-                        <th class="text-center">Jenis Surat</th>
-                        <th class="text-center">Berkas</th>
-                        @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')
-                        <th class="text-center">Keterangan</th>
+                        <th class="text-center">Jenis Surat</th>                        
+                        @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')    
+                        <th class="text-center">Berkas</th>                    
                         <th style="border-top-right-radius: 20px" class="text-center"></th>
                         @endif
                         @if(auth()->check() && auth()->user()->type == 'kepala-sekolah')
-                        <th class="text-center" style="border-top-right-radius: 20px">Keterangan</th>
+                        <th style="border-top-right-radius: 20px" class="text-center" class="text-center">Berkas</th>
                         @endif
                 
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $nomor = 1 ?>
                     @foreach ($data as $row)
                         <tr>
+                            <td>{{ $nomor++  ?? '-' }}</td>
                             <td>{{ $row->{'tanggal_keluar'} ?? '-' }}</td>
                             <td>{{ $row->{'nomor_surat'} ?? '-' }}</td>
                             <td>{{ $row->perihal ?? '-' }}</td>
@@ -98,8 +99,6 @@
                                     </a>
                                 </div>
                             </td>
-                            <td class="pte">
-                                {{ $row->keterangan ?? '-' }}</td>
                                 @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')                                
 
                                 

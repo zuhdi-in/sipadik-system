@@ -18,10 +18,10 @@ class SuratMasukController extends Controller
      */
     public function index()
     {
-        $data = DB::table('surat_masuk')
-                    ->join('jenis_surat', 'surat_masuk.jenis_surat_id', '=', 'jenis_surat.id')
-                    ->select('surat_masuk.*', 'jenis_surat.nama_jenis')
-                    ->get();
+        $data = SuratMasuk::join('jenis_surat', 'surat_masuk.jenis_surat_id', '=', 'jenis_surat.id')
+            ->select('surat_masuk.*', 'jenis_surat.nama_jenis')
+            ->orderBy('surat_masuk.tanggal_diterima', 'ASC')
+            ->get();
         return view('dashboard.surat-masuk.index', compact('data'));
     }
 

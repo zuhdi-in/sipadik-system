@@ -26,12 +26,12 @@
                     <div class="row mb-3">
                         <div class="col-12 col-sm-6 mb-3 mb-lg-0">
                             <label class="form-label">Nama</label>
-                            <input type="text" name="name" class="form-control" />
+                            <input type="text" name="name" class="form-control" value="{{ old('name') }}/>
                         </div>
 
                         <div class="col-12 col-sm-6">
                             <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" />
+                            <input type="email" name="email" class="form-control" value="{{ old('email') }}/>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -53,11 +53,10 @@
                         </div>
                         <div class="col-12 col-sm-6">
                             <label class="form-label">Role User</label>
-                            <select class="form-select form-control" name="type">
+                            <select class="form-select form-control" name="type">                                
                                 <option value="" selected>-- Pilih Role User --</option>                            
                                 <option value="1">Staff</option>                            
-                                <option value="2">Kepala Sekolah</option>                            
-                                
+                                <option value="2">Kepala Sekolah</option>                                                            
                             </select>
                         </div>
                     </div>

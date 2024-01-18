@@ -26,7 +26,7 @@
                     <div class="row mb-3">
                         <div class="col-12 col-sm-6 mb-3 mb-lg-0">
                             <label class="form-label">Nama Jenis</label>
-                            <input type="text" name="nama_jenis" class="form-control" />
+                            <input type="text" name="nama_jenis" class="form-control" value="{{ old('nama_jenis') }}/>
                         </div>
                     </div>
                     <div class="mb-3">

@@ -26,19 +26,20 @@
                     <div class="row mb-3">
                         <div class="col-12 col-sm-4 mb-3 mb-lg-0">
                             <label class="form-label">Nomor Surat</label>
-                            <input type="text" name="nomor_surat" class="form-control" />
+                            <input type="text" name="nomor_surat" class="form-control" value="{{ old('nomor_surat') }}"/>
                         </div>
 
                         <div class="col-12 col-sm-4">
                             <label class="form-label">Perihal</label>
-                            <input type="text" name="perihal" class="form-control" />
+                            <input type="text" name="perihal" class="form-control" value="{{ old('perihal') }}"/>
                         </div>
                         <div class="col-12 col-sm-4">
                             <label class="form-label">Jenis Surat</label>
                             <select class="form-select form-control" name="jenis_surat_id">
                                 <option selected>-- Pilih Jenis Surat --</option>                            
                                 @foreach($jenis as $jns)                            
-                                    <option value="{{ $jns->id }}">{{ $jns->{'nama_jenis'} }}</option>
+                                    @php $sel = ($jns->id == old('jenis_surat_id')) ? 'selected' : ''; @endphp
+                                    <option value="{{ $jns->id }}" {{ $sel}}>{{ $jns->{'nama_jenis'} }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -46,12 +47,12 @@
                     <div class="row mb-3">
                         <div class="col-12 col-sm-6 mb-3 mb-lg-0">
                             <label class="form-label">Tanggal Keluar</label>
-                            <input type="date" name="tanggal_keluar" class="form-control" />
+                            <input type="date" name="tanggal_keluar" class="form-control" value="{{ old('tanggal_keluar') }}"/>
                         </div>
 
                         <div class="col-12 col-sm-6">
                             <label class="form-label">Penerima</label>
-                            <input type="text" name="penerima" class="form-control" />
+                            <input type="text" name="penerima" class="form-control" value="{{ old('penerima') }}"/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -63,7 +64,7 @@
 
                         <div class="col-12 col-sm-6">
                             <label class="form-label">Keterangan</label>
-                            <textarea name="keterangan" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="keterangan" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ old('keterangan') }}</textarea>
                         </div>
                     </div>
                     <div class="mb-3">

@@ -9,10 +9,12 @@ $(document).ready(function() {
         "info": false,
         "autoWidth": true,
         "order": [
-            [0, 'asc'],
-            [1, 'asc']
+            [1, 'desc'],    
         ],
-        "dom": '<"top"i><"bottom"flp>rt<"clear">'
+        "dom": '<"top"i><"bottom"flp>rt<"clear">',
+        // columnDefs: [
+        //     { orderable: false, targets: [4, 7, 9] }, // Matikan pengurutan pada kolom ke-3 dan ke-4
+        // ],
     });
 
     $.fn.dataTable.ext.search.push(
