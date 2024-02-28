@@ -64,10 +64,10 @@
                         <th class="text-center">Perihal</th>
                         <th class="text-center">Pengirim</th>
                         <th class="text-center">Jenis Surat</th>
-                        <th class="text-center">Berkas</th>        
+                        <th class="text-center">Berkas</th>
 
                         @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')
-                            <th class="text-center">Disposisi</th>                        
+                            <th class="text-center">Disposisi</th>
                             <th style="border-top-right-radius: 20px" class="text-center"></th>
                         @endif
 
@@ -110,7 +110,7 @@
                                 {{ $row->keterangan ?? '-' }}</td> --}}
 
                                 @if(auth()->check() && auth()->user()->type != 'kepala-sekolah')
-            
+
                             <td class="text-center">
 
                                 <a class="btn btn-sm dropdown-toggle" href="#" id="userDropdown" role="button"

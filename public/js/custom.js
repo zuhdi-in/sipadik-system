@@ -2,6 +2,20 @@
 
 
 $(document).ready(function() {
+
+    var table = $('#tables-normal').DataTable({
+        "paging": false,
+        "lengthChange": false,
+        "searching": true,
+        "info": false,
+        "autoWidth": true,
+        "ordering": false,
+        "order": [
+            [1, 'asc'],
+        ],
+        "dom": '<"top"i><"bottom"flp>rt<"clear">'
+    });
+
     var table = $('#example').DataTable({
         "paging": false,
         "lengthChange": false,
@@ -9,7 +23,7 @@ $(document).ready(function() {
         "info": false,
         "autoWidth": true,
         "order": [
-            [1, 'desc'],    
+            [1, 'desc'],
         ],
         "dom": '<"top"i><"bottom"flp>rt<"clear">',
         // columnDefs: [
@@ -18,10 +32,10 @@ $(document).ready(function() {
     });
 
     $.fn.dataTable.ext.search.push(
-        function(settings, data, dataIndex, n) {            
+        function(settings, data, dataIndex, n) {
             const startDate = $('#startDate').val();
             const endDate = $('#endDate').val();
-            const dateColumn = data[0];
+            const dateColumn = data[1];
             if ((startDate === '' && endDate === '') ||
                 (startDate === '' && dateColumn <= endDate) ||
                 (endDate === '' && dateColumn >= startDate) ||
@@ -33,16 +47,16 @@ $(document).ready(function() {
     );
     $('#filter_button').click(function(e) {
         e.preventDefault(); // Ini mencegah bawaan dari tombol 'Filter'
-        
         // Tempatkan kode yang memicu filter di sini jika diperlukan
     });
-    
+
 
     $('#search').on('keyup', function() {
         table.search(this.value).draw();
     });
 
     $('#filter_button').on('click', function() {
+        console.log(table)
         table.draw();
     });
 

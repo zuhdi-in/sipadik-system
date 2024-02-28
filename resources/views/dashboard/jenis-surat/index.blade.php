@@ -14,7 +14,7 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-borderless text-center custom-table align-middle" id="example" width="100%"
+            <table class="table table-borderless text-center custom-table align-middle" id="tables-normal" width="100%"
                 cellspacing="0">
                 <thead>
                     <tr>

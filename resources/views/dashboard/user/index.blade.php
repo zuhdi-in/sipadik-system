@@ -17,7 +17,7 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-borderless text-center custom-table align-middle" id="example" width="100%"
+            <table class="table table-borderless text-center custom-table align-middle" id="tables-normal" width="100%"
                 cellspacing="0">
                 <thead>
                     <tr>
@@ -25,6 +25,7 @@
                         </th>
                         <th class="text-center">Username</th>
                         <th class="text-center">Email</th>
+                        <th class="text-center">Role</th>
                         <th style="border-top-right-radius: 20px" class="text-center"></th>
                     </tr>
                 </thead>
@@ -37,6 +38,22 @@
                             <td>{{ $nomor++ }}</td>
                             <td>{{ $row->name ?? '-' }}</td>
                             <td>{{ $row->email ?? '-' }}</td>
+                            <td>
+                                @if (auth()->check())
+                                    @if ($row->type == 'kepala-sekolah')
+                                        Kepala Sekolah
+                                    @elseif($row->type == 'staff')
+                                        Staff
+                                    @elseif($row->type == 'admin')
+                                        Admin
+                                    @else
+                                        -
+                                    @endif
+                                @else
+                                    -
+                                @endif
+
+                            </td>
                             <td class="text-center">
 
                                 <a class="btn btn-sm dropdown-toggle" href="#" id="userDropdown" role="button"

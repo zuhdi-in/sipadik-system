@@ -65,7 +65,6 @@ class JenisSuratController extends Controller
      */
     public function edit($id)
     {
-
         $row = JenisSurat::find($id);
         return view('dashboard.jenis-surat.edit-jenis-surat', compact('row'));
     }
